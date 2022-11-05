@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.root {
+  width: 400px;
+  height: 400px;
+  margin-inline: auto;
+  border-radius: 8px;
+  background: linear-gradient(to top right, #43399f, #4ec4c9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.logo {
+  --bg-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-color);
+}
+
+.hundred {
+  --shadow: 1px 1px 10px 1px #00000022;
+  --together: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.zeroa,
+.zerob {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 24px solid var(--bg-color);
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
+
+.zerob {
+  z-index: 1;
+  transform: translateX(calc(var(--together) * -1));
+}
+
+.one {
+  width: 24px;
+  height: 100px;
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow);
+  position: relative;
+  border-radius: 4px;
+  transform: translateX(calc(var(--together) - 8px));
+  z-index: 4;
+}
+
+.fragment {
+  position: absolute;
+  content: " ";
+  top: 0px;
+  left: -8px;
+  width: 20px;
+  height: 40px;
+  transform: rotateZ(50deg);
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  background: var(--bg-color);
+  z-index: 3;
+}
+
+.small,
+.large {
+  width: 100%;
+  text-align: center;
+  line-height: 80%;
+}
+
+.large {
+  font-size: 88px;
+}
+
+.small {
+  font-size: 26px;
+}
