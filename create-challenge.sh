@@ -12,7 +12,7 @@ create_day_folder(){
         mkdir $folderName
         cd $folderName
         echo "[3..3] Creating files..."
-        echo "<!DOCTYPE html><html lang=\"pt-br\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" href=\"styles.css\"><title>Desafio - Dia $1</title></head><body><a href=\"https://100dayscss.com/days/$1\" target=\"_blank\">Clique aqui para acessar o desafio</a></body></html>" > index.html
+        echo "<!DOCTYPE html><html lang=\"pt-br\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style></style><title>Desafio - Dia $1</title></head><body><a href=\"https://100dayscss.com/days/$1\" target=\"_blank\">Clique aqui para acessar o desafio</a></body></html>" > index.html
         touch styles.css
         echo "#!/bin/bash
         npx live-server" > run.sh
