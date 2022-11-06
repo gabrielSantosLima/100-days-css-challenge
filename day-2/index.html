@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio - Dia 2</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .root {
+            --bg: #3FAF82;
+            --bg-menu: #fff;
+            width: 400px;
+            height: 400px;
+            margin-inline: auto;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .root .menu {
+            cursor: pointer;
+            width: 81px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .root .menu .rectangle {
+            --scale-to: 1;
+            --collapse-to: 0;
+            --rotate-to: 0deg;
+            --shadow: -1px 1px 6px 1px #00000033;
+            --time: 0.6s;
+            width: 100%;
+            height: 8px;
+            border-radius: 3px;
+            box-shadow: var(--shadow);
+            background: var(--bg-menu);
+        }
+
+        .root .menu.uncollapsed .rectangle {
+            animation: uncollapse var(--time) both;
+        }
+
+        .root .menu.collapsed .rectangle {
+            animation: collapse var(--time) both;
+        }
+
+        .root .menu .rectangle:nth-child(1) {
+            --collapse-to: 20px;
+            --rotate-to: 45deg;
+        }
+
+        .root .menu .rectangle:nth-child(2) {
+            --scale-to: 0;
+        }
+
+        .root .menu .rectangle:nth-child(3) {
+            --collapse-to: -20px;
+            --rotate-to: 135deg;
+        }
+
+        @keyframes collapse {
+            0% {
+                transform: scale(1) translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(var(--scale-to)) translateY(var(--collapse-to));
+            }
+
+            100% {
+                transform-origin: center;
+                transform: scale(var(--scale-to)) translateY(var(--collapse-to)) rotate(var(--rotate-to));
+            }
+        }
+
+        @keyframes uncollapse {
+            0% {
+                transform-origin: center;
+                transform: scale(var(--scale-to)) translateY(var(--collapse-to)) rotate(var(--rotate-to));
+            }
+
+            50% {
+                transform: scale(var(--scale-to)) translateY(var(--collapse-to));
+            }
+
+            100% {
+                transform: scale(1) translateY(0px) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://100dayscss.com/days/2" target="_blank">Clique aqui para acessar o desafio</a>
+    <div class="root">
+        <div class="menu">
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+        </div>
+    </div>
+
+    <script>
+        const menu = document.querySelector('.menu')
+        let clicked = false
+        menu.addEventListener('click', (event) => {
+            if (!clicked) {
+                menu.classList.add('collapsed')
+                menu.classList.remove('uncollapsed')
+            } else {
+                menu.classList.add('uncollapsed')
+                menu.classList.remove('collapsed')
+            }
+            clicked = !clicked
+        })
+    </script>
+</body>
+
+</html>
