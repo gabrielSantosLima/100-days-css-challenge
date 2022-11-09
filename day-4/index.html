@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio - Dia 4</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .root {
+            width: 400px;
+            height: 400px;
+            background-color: #E56262;
+            border-radius: 8px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle {
+            --size: 90px;
+            --animation: scaling-1;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 4px 4px 6px 4px #00000033;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: var(--animation) 2s ease-out infinite both alternate;
+        }
+
+        .medium {
+            --size: 60px;
+            --animation: scaling-2;
+        }
+
+        .small {
+            --size: 30px;
+            --animation: scaling-3;
+        }
+
+        @keyframes scaling-1 {
+
+            0%,
+            10% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaling-2 {
+
+            0%,
+            40% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaling-3 {
+
+            0%,
+            70% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://100dayscss.com/days/4" target="_blank">Clique aqui para acessar o desafio</a>
+    <div class="root">
+        <div class="circle big">
+            <div class="circle medium">
+                <div class="circle small"></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
