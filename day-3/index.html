@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio - Dia 3</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .root {
+            --bg: #272C34;
+            width: 400px;
+            height: 400px;
+            border-radius: 8px;
+            margin-inline: auto;
+            background-color: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .picture {
+            --size-pic: 180px;
+            --bg-pic: aqua;
+            width: var(--size-pic);
+            height: var(--size-pic);
+            border-radius: 50%;
+            background-color: var(--bg-pic);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sun {
+            --size-sun: 35px;
+            --bg-sun: yellow;
+            width: var(--size-sun);
+            height: var(--size-sun);
+            border-radius: 50%;
+            background-color: var(--bg-sun);
+            position: absolute;
+            left: -35px;
+            top: calc(100%/2);
+            transform-origin: center;
+            animation: sun 4s infinite;
+        }
+
+        .floor {
+            --bg-floor: #F0DE75;
+            position: absolute;
+            top: 65%;
+            background-color: var(--bg-floor);
+            width: 100%;
+            height: 100%;
+        }
+
+        .pyramid {
+            --size-py: 50px;
+            --bg-py: white;
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: calc(65% - var(--size-py));
+            left: calc(50% - var(--size-py));
+            border: var(--size-py) solid transparent;
+            border-top: 0;
+            border-bottom: var(--size-py) solid var(--bg-py);
+        }
+
+        @keyframes sun {
+            0% {
+                rotate: -90deg;
+            }
+
+            100% {
+                transform: rotate(0deg) translateX(215px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://100dayscss.com/days/3" target="_blank">
+        Clique aqui para acessar o desafio
+    </a>
+    <div class="root">
+        <div class="picture">
+            <div class="sun"></div>
+            <div class="floor"></div>
+            <div class="pyramid"></div>
+        </div>
+    </div>
+</body>
+
+</html>
