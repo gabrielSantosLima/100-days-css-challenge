@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio - Dia 5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FA7373;
+            --secondary: #7BA2FF;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .primary {
+            background-color: var(--primary);
+        }
+
+        .secondary {
+            background-color: var(--secondary);
+        }
+
+        .root {
+            width: 400px;
+            height: 400px;
+            border-radius: 8px;
+            background-color: #42A7A1;
+            overflow: hidden;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard {
+            width: 80%;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 2px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            box-shadow: 5px 5px 10px 4px #00000044;
+        }
+
+        .dashboard .header {
+            height: 30%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #F1BA64;
+            color: white;
+        }
+
+        .dashboard .header .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+            padding-inline: 16px;
+        }
+
+        .dashboard .header .wrapper:first-of-type {
+            align-items: flex-start;
+        }
+
+        .dashboard .header .wrapper:last-of-type {
+            align-items: flex-end;
+        }
+
+        .dashboard .header .title,
+        .dashboard .header .value {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .dashboard .header .date,
+        .dashboard .header .revenue {
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        .dashboard .main {
+            display: flex;
+            flex-direction: column;
+            height: 50%;
+        }
+
+        .dashboard .main .subtitles {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 16px 12px;
+            gap: 18px;
+        }
+
+        .dashboard .main .subtitles .subtitle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dashboard .main .subtitles .subtitle .icon {
+            width: 12px;
+            height: 3px;
+            border-radius: 20%;
+        }
+
+        .dashboard .main .subtitles .subtitle .name {
+            color: #00000088;
+            font-size: 9px;
+        }
+
+        .dashboard .main .graph {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .dashboard .main .graph .container {
+            width: 90%;
+            height: calc(100%/2);
+            border-top: 1px solid #f6f6f6;
+            display: flex;
+        }
+
+        .dashboard .main .graph .container .line {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .dashboard .main .graph .container .line .dot {
+            --y: attr(data-value);
+            --size: 8px;
+            cursor: pointer;
+            width: var(--size);
+            height: var(--size);
+            transform: translateY(var(--y));
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .dashboard .main .graph .container .line .dot::after {
+            animation: dot .5s both;
+        }
+
+        .dashboard .main .graph .container .line .dot::before {
+            animation: dot .1s both;
+        }
+
+        .dashboard .main .graph .container .line .dot:hover::after {
+            --width: 20px;
+            --height: 20px;
+            content: attr(data-value);
+            position: absolute;
+            top: calc(var(--height) * -1 - 18px);
+            left: calc(var(--width)/2 * -1);
+            width: var(--width);
+            height: var(--height);
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .dashboard .main .graph .container .line .dot:hover::before {
+            --size: 8px;
+            content: ' ';
+            position: absolute;
+            top: calc(var(--size) * -1 - 4px);
+            left: calc(var(--size)/2 * -1);
+            width: 0;
+            height: 0;
+            border: var(--size) solid transparent;
+            border-top: var(--size) solid var(--primary);
+        }
+
+        .dashboard .main .graph .container .line .dot.secondary:hover::after {
+            background-color: var(--secondary);
+        }
+
+        .dashboard .main .graph .container .line .dot.secondary:hover::before {
+            border-top: var(--size) solid var(--secondary);
+        }
+
+        .dashboard .main .graph .container .line .rect {
+            width: 100%;
+            height: 2px;
+        }
+
+        .dashboard .footer {
+            display: flex;
+            align-items: center;
+            height: 20%;
+        }
+
+        .dashboard .footer .weekdays {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .dashboard .footer .weekdays .weekday {
+            color: #00000066;
+            font-size: 9px;
+        }
+
+        @keyframes dot {
+            from {
+                transform: translateY(10px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://100dayscss.com/days/5" target="_blank">Clique aqui para acessar o desafio</a>
+    <div class="root">
+        <div class="dashboard">
+            <header class="header">
+                <div class="wrapper">
+                    <h1 class="title">WEEKLY REPORT</h1>
+                    <span class="date">01.Feb. - 07 Feb.</span>
+                </div>
+                <div class="wrapper">
+                    <h2 class="revenue">Revenue</h2>
+                    <span class="value">$ 3621.79</span>
+                </div>
+            </header>
+            <main class="main">
+                <div class="subtitles">
+                    <div class="subtitle">
+                        <div class="icon primary"></div>
+                        <label class="name">Views</label>
+                    </div>
+                    <div class="subtitle">
+                        <div class="icon secondary"></div>
+                        <label class="name">Purchases</label>
+                    </div>
+                </div>
+                <div class="graph">
+                    <div class="container">
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="458" class="dot primary"></div>
+                            <div class="rect primary"></div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                        <div class="line">
+                            <div data-value="26" class="dot secondary"></div>
+                            <div class="rect secondary"></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <ul class="weekdays">
+                    <li class="weekday">MON</li>
+                    <li class="weekday">TUE</li>
+                    <li class="weekday">WED</li>
+                    <li class="weekday">THU</li>
+                    <li class="weekday">FRI</li>
+                    <li class="weekday">SAT</li>
+                    <li class="weekday">SUN</li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const dots = document.querySelectorAll('.dot')
+        console.log(dots)
+    </script>
+</body>
+
+</html>
