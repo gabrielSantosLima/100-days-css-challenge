@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .c {
+            width: 400px;
+            height: 400px;
+            border-radius: 4px;
+            margin: 0 auto;
+            background-color: #5A717B;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .r {
+            --size: 40px;
+
+            width: var(--size);
+            height: var(--size);
+            background-color: #fff;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            box-shadow: 1px 1px 1px 1px #00000055;
+
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .r .inner {
+            --size-i: calc(var(--size));
+            width: var(--size-i);
+            height: var(--size-i);
+            background-color: #5A717B;
+            border-radius: 50%;
+        }
+
+        .r.e .inner {
+            animation: on-inner 0.4s forwards;
+        }
+
+        .r.d .inner {
+            animation: off-inner 0.4s forwards;
+        }
+
+        @keyframes on-inner {
+            from {
+                background-color: #5A717B;
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(0.3);
+                background-color: #5FD17A;
+            }
+        }
+
+        @keyframes off-inner {
+            from {
+                transform: scale(0.3);
+                background-color: #5FD17A;
+            }
+
+            to {
+                background-color: #5A717B;
+                transform: scale(1);
+            }
+        }
+    </style>
+    <title>Desafio - Dia 66</title>
+</head>
+
+<body>
+    <a href="https://100dayscss.com/days/66" target="_blank">Clique aqui para acessar o desafio</a>
+    <div class="c">
+        <div class="r">
+            <div class="inner">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const circle = document.querySelector('.r')
+
+        circle.addEventListener('click', () => {
+
+            if (circle.classList.contains('e')) {
+                circle.classList.add('d')
+                circle.classList.remove('e')
+            } else {
+                circle.classList.add('e')
+                circle.classList.remove('d')
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style></style>
+    <title>Desafio - Dia 7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", Helvetica, sans-serif;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            border: 0;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .container {
+            width: 400px;
+            height: 400px;
+            background-color: #264057;
+            border-radius: 4px;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container .card {
+            background-color: #fff;
+            width: 75%;
+            height: 75%;
+            border-radius: 4px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container .card .header {
+            height: 20%;
+            border-radius: 4px 4px 0px 0px;
+            color: white;
+            background-color: #5F98CD;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .container .card .header .title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .button {
+            --bg-color: #a4d3ff;
+            background-color: transparent;
+            width: 30px;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            transition: 2s;
+        }
+
+        .button:hover {
+            --bg-color: #fff;
+        }
+
+        .container .card .header .button.menu::after,
+        .container .card .header .button.menu::before {
+            position: absolute;
+            content: ' ';
+            left: 0;
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: var(--bg-color);
+        }
+
+        .container .card .header .button.menu::after {
+            top: 30%;
+        }
+
+        .container .card .header .button.menu::before {
+            top: 50%;
+        }
+
+        .container .card .header .button.menu .menu {
+            position: absolute;
+            top: 15px;
+            right: -2px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid #5F98CD;
+            z-index: 1;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+        }
+
+        .container .card .header .button.search {}
+
+        .container .card .posts {
+            color: #787878;
+        }
+
+        .container .card .posts .post {}
+    </style>
+</head>
+
+<body>
+    <a href="https://100dayscss.com/days/7" target="_blank">
+        Clique aqui para acessar o desafio
+    </a>
+
+    <div class="container">
+        <div class="card">
+            <header class="header">
+                <input type="text" class="field hide" placeholder="Search ...">
+                <button class="button menu">
+                    <div class="menu"></div>
+                </button>
+                <label class="title">Notifications</label>
+                <button class="button search"></button>
+            </header>
+
+            <ul class="posts">
+                <li class="post">
+                    <span class="time">9:24 AM</span>
+                    <p class="description">
+                        <strong>John Walker</strong> posted a photo on your wall.
+                    </p>
+                </li>
+                <li class="post">
+                    <span class="time">9:24 AM</span>
+                    <p class="description">
+                        <strong>John Walker</strong> posted a photo on your wall.
+                    </p>
+                </li>
+                <li class="post">
+                    <span class="time">9:24 AM</span>
+                    <p class="description">
+                        <strong>John Walker</strong> posted a photo on your wall.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
